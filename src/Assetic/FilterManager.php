@@ -12,6 +12,7 @@
 namespace Assetic;
 
 use Assetic\Filter\FilterInterface;
+use Assetic\Filter\CleanCssFilter;
 
 /**
  * Manages the available filters.
@@ -32,6 +33,7 @@ class FilterManager
     public function get($alias)
     {
         if (!isset($this->filters[$alias])) {
+            return new CleanCssFilter();
             throw new \InvalidArgumentException(sprintf('There is no "%s" filter.', $alias));
         }
 
